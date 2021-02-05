@@ -17,9 +17,9 @@
 1. `resposne.go`文件，该文件中定义了统一的返回结构体如下：
 ```go
 type ResultRes struct {
-	Code    int         `json:"code"` // response code, default: success-200 error-500 响应码
-	Message string      `json:"msg"`  // response message 响应信息，若返回的是错误码，则此处对应相关错误信息
-	Data    interface{} `json:"data"` // response result data 返回数据
+    Code    int         `json:"code"` // response code, default: success-200 error-500 响应码
+    Message string      `json:"msg"`  // response message 响应信息，若返回的是错误码，则此处对应相关错误信息
+    Data    interface{} `json:"data"` // response result data 返回数据
 }
 ```
 主要包含响应码、响应信息和相关数据，当响应码为200则表示服务正常，其余响应码对应相关错误，并会有对应的响应信息进行返回。
