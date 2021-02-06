@@ -2,21 +2,34 @@
 [server]
 	Address     = ":8199"
 	ServerRoot  = "public"
-	ServerAgent = "gf-app"
-	LogPath     = "/tmp/log/gf-app/server"
+	ServerAgent = "gf-vue3-admin-server"
+	LogPath     = "./log/gf-vue3-admin-server/server"
 
 # Logger.
 [logger]
-    Path        = "/tmp/log/gf-app"
+    Path        = "./log/gf-vue3-admin-server/log"
     Level       = "all"
     Stdout      = true
 
 # Database.
 [database]
-    link  = "mysql:root:12345678@tcp(127.0.0.1:3306)/test"
-    debug = true
+    [[database.default]]
+        type = "mysql"
+        link  = "mysql:root:12345678@tcp(127.0.0.1:3306)/test"
+        debug = true
     # Database logger.
     [database.logger]
-        Path   = "/tmp/log/gf-app/sql"
+        Path   = "./log/gf-vue3-admin-server/sql"
         Level  = "all"
         Stdout = true
+
+# Redis
+[redis]
+    default = "127.0.0.1:6379,0"
+    cache   = "127.0.0.1:6379,1"
+
+# Jwt
+[jwt]
+    ExpireAt = 60
+    RefreshAt = 480
+    SignKey = "gf-vue3-admin-server"
