@@ -65,7 +65,7 @@ func Authenticator(r *ghttp.Request) (interface{}, error) {
 	return nil, nil
 }
 
-//TODO Authorization check user auth role. 检查用户权限，返回false则检查失败。
+//TODO Authorization check user auth role by IdentityHandler func. 根据IdentityHandler方法返回的信息检查用户权限，返回false则检查失败
 func Authorization(data interface{}, r *ghttp.Request) bool {
 	return true
 }

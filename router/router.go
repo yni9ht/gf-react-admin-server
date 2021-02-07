@@ -3,7 +3,6 @@ package router
 import (
 	"gf-vue3-admin-server/app/api/hello"
 	"gf-vue3-admin-server/app/middleware"
-	"gf-vue3-admin-server/app/service"
 	"gf-vue3-admin-server/library/common"
 	"gf-vue3-admin-server/library/response"
 	"github.com/gogf/gf/frame/g"
@@ -14,7 +13,8 @@ func init() {
 	s := g.Server()
 	s.Group("/", func(group *ghttp.RouterGroup) {
 		group.Middleware(
-			service.Middleware.GetPath,
+			middleware.CORS,
+			middleware.GetPath,
 			middleware.JwtAuth)
 		group.ALL("/", hello.Hello)
 		group.ALL("/result", func(r *ghttp.Request) {
