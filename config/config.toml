@@ -30,6 +30,11 @@
 
 # Jwt
 [jwt]
-    ExpireAt = 60
-    RefreshAt = 480
+    ExpireTime = 60
+    RefreshTime = 480
     SignKey = "gf-vue3-admin-server"
+    Realm = "gf-vue3-admin-server zone"
+    IdentityKey = "id"
+#    TokenLookup = "header: Authorization, query: token, cookie: jwt"
+    TokenLookup = "header: Authorization"
+    TokenHeadName = "Bearer"

@@ -86,3 +86,13 @@ func FailMsg(r *ghttp.Request, msg string) {
 func FailMsgExit(r *ghttp.Request, msg string) {
 	RestResultExit(r, ERROR, msg, nil)
 }
+
+// FailCodeAndMsg result error code and custom message but not exit. 返回失败，自定义状态码和信息，不退出
+func FailCodeAndMsg(r *ghttp.Request, code int, msg string) {
+	RestResult(r, code, msg, nil)
+}
+
+// FailCodeAndMsgExit result error code and custom message and exit. 返回失败，自定义状态码和信息，并退出
+func FailCodeAndMsgExit(r *ghttp.Request, code int, msg string) {
+	RestResultExit(r, code, msg, nil)
+}

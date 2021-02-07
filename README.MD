@@ -35,3 +35,37 @@ type PageResult struct {
     Records  interface{} `json:"records"`  // 对应数据
 }
 ```
+### JWT
+本项目采用 [gf-jwt](https://github.com/gogf/gf-jwt) ，jwt的一些基础配置例如过期时间、签名key等都放在`config/config.toml`文件的中。jwt相关业务方发详情见`app/middleware/jwt.go`文件，该文件中的`init()`方法中初始化了
+gf-jwt的相关配置，通过自定义的结构体对外进行调用。`Authenticator`、`Authorization`、
+`Unauthorized`、`LoginResponse`分别对应了登录方法、鉴权方法、token校验失败方法、登录返回
+方法，用来替换gf-jwt的对应默认方法。其他配置详情见gf-jwt的相关文档和案例。
+```go
+// init to gf-jwt config. 进行jwt初始化
+func init() {
+    // 初始化配置
+    JwtCfg = new(JwtConfig)
+    if err := g.Cfg().GetStruct("jwt", JwtCfg); err != nil {
+        g.Log().Errorf("load jwt config fail, err: %v", err)
+    }
+    jwtMiddleware, err := jwt.New(&jwt.GfJWTMiddleware{
+        Realm:         JwtCfg.Realm,
+        Key:           []byte(JwtCfg.SignKey),
+        Timeout:       time.Duration(JwtCfg.ExpireTime) * time.Minute,  // 过期时间
+        MaxRefresh:    time.Duration(JwtCfg.RefreshTime) * time.Minute, // 刷新时间
+        IdentityKey:   JwtCfg.IdentityKey,
+        TokenLookup:   JwtCfg.TokenLookup,
+        TokenHeadName: JwtCfg.TokenHeadName,
+        TimeFunc:      time.Now,
+        CacheAdapter:  adapter.NewRedis(g.Redis("cache")), // 采用redis替换默认的内存缓存
+        Authenticator: Authenticator,
+        Authorizator:  Authorization,
+        Unauthorized:  Unauthorized,
+        LoginResponse: LoginResponse,
+    })
+    if err != nil {
+        g.Log().Errorf("init jwt middleware fail, error: %v", err)
+    }
+    JwtMiddleware = jwtMiddleware
+}
+```
