@@ -5,10 +5,18 @@ import (
 	"github.com/gogf/gf/net/ghttp"
 )
 
-// 允许接口跨域请求
+// 允许接口跨域请求中间件
 func CORS(r *ghttp.Request) {
 	r.Response.CORSDefault()
 	r.Middleware.Next()
+}
+
+// 异常记录中间件
+func ErrorLog(r *ghttp.Request) {
+	r.Middleware.Next()
+	if err := r.GetError(); err != nil {
+		g.Log().Error(err)
+	}
 }
 
 func GetPath(r *ghttp.Request) {
