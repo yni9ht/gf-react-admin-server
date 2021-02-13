@@ -38,3 +38,9 @@
 #    TokenLookup = "header: Authorization, query: token, cookie: jwt"
     TokenLookup = "header: Authorization"
     TokenHeadName = "Bearer"
+
+[gfcli]
+    [[gfcli.gen.dao]]
+    link  = "mysql:root:12345678@tcp(127.0.0.1:3306)/test"
+    tables = "admin_user"
+    removePrefix = "admin_"
