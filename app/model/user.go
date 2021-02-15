@@ -12,3 +12,21 @@ import (
 type User internal.User
 
 // Fill with you ideas below.
+
+// UserLoginReq is login param
+type UserLoginReq struct {
+	Account  string `v:"required#请输入账户"` // 账号
+	Password string `v:"required#请输入密码"` // 密码
+}
+
+// UserLoginRes is login response param
+type UserLoginRes struct {
+	Id       int    `json:"id"`       //
+	FullName string `json:"fullName"` // 姓名
+	Account  string `json:"account"`  // 账号
+	Email    string `json:"email"`    // 邮箱
+	Mobile   string `json:"mobile"`   // 手机号码
+	Wechat   string `json:"wechat"`   // 微信号
+	Avatar   string `json:"avatar"`   // 头像
+	Sex      int    `json:"sex"`      // 性别：0:未知，1:男，2:女
+}

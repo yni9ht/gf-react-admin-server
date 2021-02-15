@@ -1,11 +1,14 @@
 package middleware
 
 import (
+	"gf-vue3-admin-server/app/model"
+	"gf-vue3-admin-server/app/service"
 	"gf-vue3-admin-server/library/response"
 	"github.com/gogf/gcache-adapter/adapter"
 	jwt "github.com/gogf/gf-jwt"
 	"github.com/gogf/gf/frame/g"
 	"github.com/gogf/gf/net/ghttp"
+	"github.com/gogf/gf/util/gconv"
 	"time"
 )
 
@@ -28,8 +31,8 @@ var (
 )
 
 type loginRes struct {
-	token  string
-	expire time.Time
+	Token  string    `json:"token"`
+	Expire time.Time `json:"expire"`
 }
 
 // init to gf-jwt config. 进行jwt初始化
@@ -50,6 +53,7 @@ func init() {
 		TimeFunc:      time.Now,
 		CacheAdapter:  adapter.NewRedis(g.Redis("cache")), // 采用redis替换默认的内存缓存
 		Authenticator: Authenticator,
+		PayloadFunc:   PayloadFunc,
 		Authorizator:  Authorization,
 		Unauthorized:  Unauthorized,
 		LoginResponse: LoginResponse,
@@ -62,7 +66,27 @@ func init() {
 
 //TODO Authenticator user login valid, and return userInfo. 进行登录校验，返回用户信息、错误
 func Authenticator(r *ghttp.Request) (interface{}, error) {
-	return nil, nil
+	var (
+		loginReg *model.UserLoginReq
+	)
+	if err := r.Parse(&loginReg); err != nil {
+		g.Log().Errorf("登录失败，err:[%v]", err)
+		response.FailMsgExit(r, err.Error())
+	}
+	loginRes, err := service.User.Login(loginReg)
+	return gconv.Map(&loginRes), err
+}
+
+// PayloadFunc customer info to jwt. 放入自定义信息到jwt的claims中
+func PayloadFunc(data interface{}) jwt.MapClaims {
+	claims := jwt.MapClaims{}
+	params := data.(map[string]interface{})
+	if len(params) > 0 {
+		for k, v := range params {
+			claims[k] = v
+		}
+	}
+	return claims
 }
 
 //TODO Authorization check user auth role by IdentityHandler func. 根据IdentityHandler方法返回的信息检查用户权限，返回false则检查失败
@@ -81,8 +105,8 @@ func Unauthorized(r *ghttp.Request, code int, message string) {
 // LoginResponse custom callback login response. 自定义登录返回方法
 func LoginResponse(r *ghttp.Request, code int, token string, expire time.Time) {
 	response.RestResultExit(r, code, "", &loginRes{
-		token:  token,
-		expire: expire,
+		Token:  token,
+		Expire: expire,
 	})
 }
 
