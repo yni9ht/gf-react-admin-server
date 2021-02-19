@@ -34,7 +34,7 @@
     RefreshTime = 480
     SignKey = "gf-vue3-admin-server"
     Realm = "gf-vue3-admin-server zone"
-    IdentityKey = "id"
+    IdentityKey = "JWT_UserId"
 #    TokenLookup = "header: Authorization, query: token, cookie: jwt"
     TokenLookup = "header: Authorization"
     TokenHeadName = "Bearer"

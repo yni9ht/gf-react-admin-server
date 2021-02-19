@@ -30,5 +30,6 @@ func init() {
 		group.POST("/role", v1.Role.CreateRole)
 		group.PUT("/role", v1.Role.EditRole)
 		group.GET("/role", v1.Role.RolePageList)
+		group.GET("/role/{id}", v1.Role.RoleById)
 	})
 }

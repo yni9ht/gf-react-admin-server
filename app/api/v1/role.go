@@ -6,6 +6,7 @@ import (
 	"gf-vue3-admin-server/library/response"
 	"github.com/gogf/gf/errors/gerror"
 	"github.com/gogf/gf/net/ghttp"
+	"github.com/gogf/gf/util/gconv"
 	"github.com/gogf/gf/util/gvalid"
 )
 
@@ -76,4 +77,21 @@ func (ra *roleApi) RolePageList(r *ghttp.Request) {
 		response.FailCodeAndMsgExit(r, gerror.Code(err), err.Error())
 	}
 	response.SuccessDataExit(r, roles)
+}
+
+// @summary 角色详情
+// @tags 角色服务
+// @produce json
+// @param id path int true "角色id"
+// @router /v1/role/{id} [GET]
+func (ra *roleApi) RoleById(r *ghttp.Request) {
+	id := r.Get("id")
+	if err := gvalid.Check(id, "required|integer|min:1", "角色id为空|参数类型非法|角色id长度非法"); err != nil {
+		response.FailMsgExit(r, err.Error())
+	}
+	role, err := service.Role.RoleById(gconv.Int64(id))
+	if err != nil {
+		response.FailMsgExit(r, err.Error())
+	}
+	response.SuccessData(r, role)
 }

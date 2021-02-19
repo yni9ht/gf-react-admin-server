@@ -89,3 +89,9 @@ func (r *roleService) RolePageList(req *model.RoleQueryReq) (interface{}, error)
 		Records:  roles,
 	}, nil
 }
+
+// RoleById 根据id获取角色信息
+func (r *roleService) RoleById(id int64) (role *model.RoleInfoReq, err error) {
+	err = dao.Role.WherePri(id).Struct(&role)
+	return
+}
