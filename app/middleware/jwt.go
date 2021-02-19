@@ -65,6 +65,11 @@ func init() {
 }
 
 //TODO Authenticator user login valid, and return userInfo. 进行登录校验，返回用户信息、错误
+// @summary 登录
+// @tags 用户服务
+// @produce json
+// @param entity body model.UserLoginReq true "登录参数"
+// @router /v1/user/login [POST]
 func Authenticator(r *ghttp.Request) (interface{}, error) {
 	var (
 		loginReg *model.UserLoginReq

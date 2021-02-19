@@ -25,6 +25,28 @@
                     }
                 ]
             }
+        },
+        "/v1/user/login": {
+            "post": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户服务"
+                ],
+                "summary": "登录",
+                "parameters": [
+                    {
+                        "description": "登录参数",
+                        "name": "entity",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.UserLoginReq"
+                        }
+                    }
+                ]
+            }
         }
     },
     "definitions": {
@@ -32,15 +54,28 @@
             "type": "object",
             "properties": {
                 "alias": {
-                    "description": "Alias 角色别名",
+                    "description": "角色别名",
                     "type": "string"
                 },
                 "parentId": {
-                    "description": "ParentId 父角色id",
+                    "description": "父角色id",
                     "type": "string"
                 },
                 "roleName": {
-                    "description": "RoleName 角色名称",
+                    "description": "角色名称",
+                    "type": "string"
+                }
+            }
+        },
+        "model.UserLoginReq": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "description": "账号",
+                    "type": "string"
+                },
+                "password": {
+                    "description": "密码",
                     "type": "string"
                 }
             }
