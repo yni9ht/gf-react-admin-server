@@ -28,5 +28,6 @@ func init() {
 	s.Group(RouteGroupPrefix, func(group *ghttp.RouterGroup) {
 		group.Middleware(middleware.JwtAuth)
 		group.POST("/role", v1.Role.CreateRole)
+		group.PUT("/role", v1.Role.EditRole)
 	})
 }

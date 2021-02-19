@@ -47,3 +47,24 @@ func (r *roleService) CreateRole(req *model.CreateRoleReq) error {
 
 	return nil
 }
+
+// EditRole 编辑角色信息
+func (r *roleService) EditRole(req *model.EditRoleReq) error {
+	// 判断是否已经存在该角色
+	role, err := dao.Role.FindByNameOrAlias(req.RoleName, req.Alias)
+	if err != nil {
+		return err
+	}
+	if role != nil && role.Id != req.Id {
+		return gerror.NewCode(response.DataExist, "该角色名或别名已存在，请修改角色名或别名。")
+	}
+
+	err = gconv.Struct(req, role)
+	if err != nil {
+		return err
+	}
+
+	// 更新角色
+	_, err = dao.Role.Update(role, dao.Role.Columns.Id, role.Id)
+	return err
+}

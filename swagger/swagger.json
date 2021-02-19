@@ -5,6 +5,26 @@
     },
     "paths": {
         "/v1/role": {
+            "put": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "角色服务"
+                ],
+                "summary": "编辑角色接口",
+                "parameters": [
+                    {
+                        "description": "编辑角色参数",
+                        "name": "entity",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.EditRoleReq"
+                        }
+                    }
+                ]
+            },
             "post": {
                 "produces": [
                     "application/json"
@@ -56,6 +76,27 @@
                 "alias": {
                     "description": "角色别名",
                     "type": "string"
+                },
+                "parentId": {
+                    "description": "父角色id",
+                    "type": "string"
+                },
+                "roleName": {
+                    "description": "角色名称",
+                    "type": "string"
+                }
+            }
+        },
+        "model.EditRoleReq": {
+            "type": "object",
+            "properties": {
+                "alias": {
+                    "description": "角色别名",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "角色id",
+                    "type": "integer"
                 },
                 "parentId": {
                     "description": "父角色id",

@@ -13,9 +13,15 @@ type Role internal.Role
 
 // Fill with you ideas below.
 
-// CreateRoleReq 用于接受创建角色请求
+// CreateRoleReq 用于接受创建角色请求参数
 type CreateRoleReq struct {
 	ParentId string `json:"parentId"`                               // 父角色id
 	RoleName string `json:"roleName" v:"roleName@required#角色名不能为空"` // 角色名称
 	Alias    string `json:"alias"`                                  // 角色别名
+}
+
+// EditRoleReq 编辑角色请求参数
+type EditRoleReq struct {
+	CreateRoleReq
+	Id int64 `json:"id" v:"id@required|min:1 #待编辑角色id不能为空|待编辑角色id长度非法"` // 角色id
 }

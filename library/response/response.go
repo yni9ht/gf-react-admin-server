@@ -7,11 +7,12 @@ import (
 )
 
 var (
-	OK           = http.StatusOK
-	OkMessage    = "正常"
-	ERROR        = http.StatusInternalServerError
-	ErrorMessage = "服务器发生了一些错误"
-	DataExist    = 1001 // 数据已存在
+	OK            = http.StatusOK
+	OkMessage     = "正常"
+	ERROR         = http.StatusInternalServerError
+	ErrorMessage  = "服务器发生了一些错误"
+	DataExist     = 1001 // 数据已存在
+	ParamValidErr = 1002 // 参数校验失败
 )
 
 type ResultRes struct {
