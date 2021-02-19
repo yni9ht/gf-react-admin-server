@@ -25,12 +25,13 @@ var (
 
 // Fill with you ideas below.
 func (r *roleDao) FindByNameOrAlias(name, alias string) (role *model.Role, err error) {
+	dao := r.Safe()
 	if len(name) > 0 {
-		r.Where(r.Columns.RoleName+"like", "%"+name+"%")
+		dao = dao.Where(r.Columns.RoleName+" like ?", "%"+name+"%")
 	}
 	if len(alias) > 0 {
-		r.Or(r.Columns.Alias+"like", "%"+alias+"%")
+		dao = dao.Or(r.Columns.Alias+" like ?", "%"+alias+"%")
 	}
-	err = r.Scan(&role)
+	err = dao.Scan(&role)
 	return
 }

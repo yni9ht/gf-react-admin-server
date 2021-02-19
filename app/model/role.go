@@ -6,6 +6,8 @@ package model
 
 import (
 	"gf-vue3-admin-server/app/model/internal"
+	"gf-vue3-admin-server/library/common"
+	"github.com/gogf/gf/os/gtime"
 )
 
 // Role is the golang structure for table admin_role.
@@ -22,6 +24,26 @@ type CreateRoleReq struct {
 
 // EditRoleReq 编辑角色请求参数
 type EditRoleReq struct {
-	CreateRoleReq
+	*CreateRoleReq
 	Id int64 `json:"id" v:"id@required|min:1 #待编辑角色id不能为空|待编辑角色id长度非法"` // 角色id
+}
+
+// RoleQueryReq 角色列表查询参数
+type RoleQueryReq struct {
+	common.PageReq
+}
+
+// RoleInfoReq 角色详情返回参数
+type RoleInfoReq struct {
+	Id        int64       `json:"id"`        //
+	ParentId  string      `json:"parentId"`  // 父角色id
+	RoleName  string      `json:"roleName"`  // 角色名称
+	Alias     string      `json:"alias"`     // 角色别名
+	CreatedAt *gtime.Time `json:"createdAt"` // 创建时间
+	UpdatedAt *gtime.Time `json:"updatedAt"` // 更新时间
+}
+
+// RolePageListRes 角色列表返回参数
+type RolePageListRes struct {
+	RoleInfoReq
 }

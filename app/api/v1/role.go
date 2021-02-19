@@ -55,3 +55,25 @@ func (ra *roleApi) EditRole(r *ghttp.Request) {
 	}
 	response.SuccessMsgExit(r, "编辑角色信息成功")
 }
+
+// @summary 角色分页列表
+// @tags 角色服务
+// @produce json
+// @param entity body model.RoleQueryReq true "角色列表搜索参数"
+// @router /v1/role [GET]
+func (ra *roleApi) RolePageList(r *ghttp.Request) {
+	var roleQueryReq = &model.RoleQueryReq{}
+	if err := r.Parse(roleQueryReq); err != nil {
+		if _, ok := err.(*gvalid.Error); ok {
+			// 参数校验失败
+			response.FailCodeAndMsgExit(r, response.ParamValidErr, err.Error())
+		}
+		response.FailMsgExit(r, err.Error())
+	}
+
+	roles, err := service.Role.RolePageList(roleQueryReq)
+	if err != nil {
+		response.FailCodeAndMsgExit(r, gerror.Code(err), err.Error())
+	}
+	response.SuccessDataExit(r, roles)
+}

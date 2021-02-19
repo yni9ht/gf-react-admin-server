@@ -68,3 +68,24 @@ func (r *roleService) EditRole(req *model.EditRoleReq) error {
 	_, err = dao.Role.Update(role, dao.Role.Columns.Id, role.Id)
 	return err
 }
+
+// RolePageList 获取角色分页列表
+func (r *roleService) RolePageList(req *model.RoleQueryReq) (interface{}, error) {
+	pageNum, pageSize := req.PageNum, req.PageSize
+	total, err := dao.Role.Count()
+	if err != nil {
+		return nil, err
+	}
+	roles := make([]model.RolePageListRes, 0)
+	err = dao.Role.Page(pageNum, pageSize).Structs(&roles)
+	if err != nil {
+		return nil, err
+	}
+
+	return &common.PageResult{
+		PageNum:  pageNum,
+		PageSize: pageSize,
+		Total:    total,
+		Records:  roles,
+	}, nil
+}
