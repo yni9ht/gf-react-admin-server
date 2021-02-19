@@ -5,14 +5,14 @@ import (
 	"gf-vue3-admin-server/app/model"
 )
 
-type serviceUser struct {
+type userService struct {
 }
 
 var (
-	User = &serviceUser{}
+	User = &userService{}
 )
 
-func (u *serviceUser) Login(loginReq *model.UserLoginReq) (user *model.UserLoginRes, err error) {
+func (u *userService) Login(loginReq *model.UserLoginReq) (user *model.UserLoginRes, err error) {
 	var queryParam = map[string]string{
 		"account":  loginReq.Account,
 		"password": loginReq.Password,
