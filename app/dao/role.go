@@ -6,6 +6,7 @@ package dao
 
 import (
 	"gf-vue3-admin-server/app/dao/internal"
+	"gf-vue3-admin-server/app/model"
 )
 
 // roleDao is the manager for logic model data accessing
@@ -23,3 +24,13 @@ var (
 )
 
 // Fill with you ideas below.
+func (r *roleDao) FindByNameOrAlias(name, alias string) (role *model.Role, err error) {
+	if len(name) > 0 {
+		r.Where(r.Columns.RoleName+"like", "%"+name+"%")
+	}
+	if len(alias) > 0 {
+		r.Or(r.Columns.Alias+"like", "%"+alias+"%")
+	}
+	err = r.Scan(&role)
+	return
+}

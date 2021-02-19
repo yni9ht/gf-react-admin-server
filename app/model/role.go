@@ -12,3 +12,10 @@ import (
 type Role internal.Role
 
 // Fill with you ideas below.
+
+// CreateRoleReq 用于接受创建角色请求
+type CreateRoleReq struct {
+	ParentId string `json:"parentId"` // 父角色id
+	RoleName string `json:"roleName"` // 角色名称
+	Alias    string `json:"alias"`    // 角色别名
+}

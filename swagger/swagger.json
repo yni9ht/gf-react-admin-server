@@ -1,0 +1,49 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/v1/role": {
+            "post": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "角色服务"
+                ],
+                "summary": "创建角色接口",
+                "parameters": [
+                    {
+                        "description": "创建角色参数",
+                        "name": "entity",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.CreateRoleReq"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "model.CreateRoleReq": {
+            "type": "object",
+            "properties": {
+                "alias": {
+                    "description": "Alias 角色别名",
+                    "type": "string"
+                },
+                "parentId": {
+                    "description": "ParentId 父角色id",
+                    "type": "string"
+                },
+                "roleName": {
+                    "description": "RoleName 角色名称",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

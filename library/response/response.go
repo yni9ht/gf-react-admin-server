@@ -11,6 +11,7 @@ var (
 	OkMessage    = "正常"
 	ERROR        = http.StatusInternalServerError
 	ErrorMessage = "服务器发生了一些错误"
+	DataExist    = 1001 // 数据已存在
 )
 
 type ResultRes struct {
