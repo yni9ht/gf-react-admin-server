@@ -25,11 +25,18 @@ func init() {
 		group.GET("/user/logout", middleware.JwtMiddleware.LogoutHandler)
 	})
 
+	// 角色服务
 	s.Group(RouteGroupPrefix, func(group *ghttp.RouterGroup) {
 		group.Middleware(middleware.JwtAuth)
 		group.POST("/role", v1.Role.CreateRole)
 		group.PUT("/role", v1.Role.EditRole)
 		group.GET("/role", v1.Role.RolePageList)
 		group.GET("/role/{id}", v1.Role.RoleById)
+	})
+
+	// 用户关系服务
+	s.Group(RouteGroupPrefix, func(group *ghttp.RouterGroup) {
+		group.Middleware(middleware.JwtAuth)
+		group.PUT("/relation", v1.Relation.SaveRelation)
 	})
 }

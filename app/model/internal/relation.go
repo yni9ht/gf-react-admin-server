@@ -11,8 +11,8 @@ import (
 // Relation is the golang structure for table admin_relation.
 type Relation struct {
 	Id        int64       `orm:"id,primary" json:"id"`        //
-	UserId    string      `orm:"user_id"    json:"userId"`    // 用户id
-	RoleId    string      `orm:"role_id"    json:"roleId"`    // 角色id
+	UserId    int64       `orm:"user_id"    json:"userId"`    // 用户id
+	RoleId    int64       `orm:"role_id"    json:"roleId"`    // 角色id
 	CreatedAt *gtime.Time `orm:"created_at" json:"createdAt"` // 创建时间
 	UpdatedAt *gtime.Time `orm:"updated_at" json:"updatedAt"` // 更新时间
 	DeletedAt *gtime.Time `orm:"deleted_at" json:"deletedAt"` // 删除时间

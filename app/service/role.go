@@ -34,7 +34,7 @@ func (r *roleService) CreateRole(req *model.CreateRoleReq) error {
 	}
 
 	// 生成id
-	id, err := common.GenerateUUID()
+	id, err := common.Id.GenerateUUID()
 	if err != nil {
 		return err
 	}

@@ -12,3 +12,9 @@ import (
 type Relation internal.Relation
 
 // Fill with you ideas below.
+
+// SaveRelationReq 创建用户关系参数
+type SaveRelationReq struct {
+	UserId  int   `json:"userId" v:"required|min:1#用户id不能为空|用户id长度有误"`              // 用户id
+	RoleIds []int `json:"roleIds" v:"required|min-length:1#待关联角色id不能为空|至少关联一个角色id"` // 角色id slice
+}

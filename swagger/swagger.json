@@ -4,6 +4,28 @@
         "contact": {}
     },
     "paths": {
+        "/v1/relation": {
+            "put": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户关系服务"
+                ],
+                "summary": "保存用户关系",
+                "parameters": [
+                    {
+                        "description": "保存用户关系参数",
+                        "name": "entity",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.SaveRelationReq"
+                        }
+                    }
+                ]
+            }
+        },
         "/v1/role": {
             "get": {
                 "produces": [
@@ -157,6 +179,22 @@
                 },
                 "pageSize": {
                     "description": "分页大小",
+                    "type": "integer"
+                }
+            }
+        },
+        "model.SaveRelationReq": {
+            "type": "object",
+            "properties": {
+                "roleIds": {
+                    "description": "角色id slice",
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "userId": {
+                    "description": "用户id",
                     "type": "integer"
                 }
             }
