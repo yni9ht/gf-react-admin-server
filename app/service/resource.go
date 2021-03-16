@@ -47,3 +47,22 @@ func (r *resourceService) CreateResource(req *model.CreateResourceReq) error {
 
 	return nil
 }
+
+// EditResource 编辑资源信息
+func (r *resourceService) EditResource(req *model.EditResourceReq) error {
+	// 判断是否存在相同资源
+	result, err := dao.Resource.FindByNameAndType(req.Name, req.Type)
+	if err != nil {
+		return err
+	}
+	if result != nil && result.Id != req.Id {
+		return gerror.NewCode(response.DataExist, "资源名已存在，请修改资源名。")
+	}
+
+	// 更新
+	_, err = dao.Resource.Update(req, dao.Resource.Columns.Id, req.Id)
+	if err != nil {
+		return err
+	}
+	return nil
+}

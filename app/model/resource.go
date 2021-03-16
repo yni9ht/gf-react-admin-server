@@ -13,8 +13,21 @@ type Resource internal.Resource
 
 // Fill with you ideas below.
 
-// CreateResourceReq add resource param
+// CreateResourceReq 新增资源参数
 type CreateResourceReq struct {
+	ParentId int64  `json:"parentId"`                                                       // 父资源id
+	Name     string `json:"name" v:"name@required#资源名称不能为空"`                                // 资源名称
+	Alias    string `json:"alias"`                                                          // 资源别称
+	Url      string `json:"url"`                                                            // 资源路径
+	Enable   bool   `json:"enable"`                                                         // 0:不显示，1显示
+	Icon     string `json:"icon"`                                                           // 资源图标
+	Type     string `json:"type" v:"type@required|in:menu,button,link#资源类型不能为空|请选择正确的资源类型"` // 资源类型：menu-菜单；button-按钮；link-链接
+	Sn       int    `json:"sn"`                                                             // 排序
+}
+
+// EditResourceReq 编辑资源参数
+type EditResourceReq struct {
+	Id       int64  `json:"id" v:"id@required|min:1#待编辑资源id不能为空|待编辑资源id不能为空"`               // 主键id
 	ParentId int64  `json:"parentId"`                                                       // 父资源id
 	Name     string `json:"name" v:"name@required#资源名称不能为空"`                                // 资源名称
 	Alias    string `json:"alias"`                                                          // 资源别称

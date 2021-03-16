@@ -44,5 +44,6 @@ func init() {
 	s.Group(RouteGroupPrefix, func(group *ghttp.RouterGroup) {
 		group.Middleware(middleware.JwtAuth)
 		group.POST("/resource", v1.Resource.CreateResource)
+		group.PUT("/resource", v1.Resource.EditResource)
 	})
 }
