@@ -26,6 +26,28 @@
                 ]
             }
         },
+        "/v1/resource": {
+            "post": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "资源管理"
+                ],
+                "summary": "新建资源信息",
+                "parameters": [
+                    {
+                        "description": "新建资源参数",
+                        "name": "entity",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.CreateResourceReq"
+                        }
+                    }
+                ]
+            }
+        },
         "/v1/role": {
             "get": {
                 "produces": [
@@ -132,6 +154,43 @@
         }
     },
     "definitions": {
+        "model.CreateResourceReq": {
+            "type": "object",
+            "properties": {
+                "alias": {
+                    "description": "资源别称",
+                    "type": "string"
+                },
+                "enable": {
+                    "description": "0:不显示，1显示",
+                    "type": "boolean"
+                },
+                "icon": {
+                    "description": "资源图标",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "资源名称",
+                    "type": "string"
+                },
+                "parentId": {
+                    "description": "父资源id",
+                    "type": "integer"
+                },
+                "sn": {
+                    "description": "排序",
+                    "type": "integer"
+                },
+                "type": {
+                    "description": "资源类型：menu-菜单；button-按钮；link-链接",
+                    "type": "string"
+                },
+                "url": {
+                    "description": "资源路径",
+                    "type": "string"
+                }
+            }
+        },
         "model.CreateRoleReq": {
             "type": "object",
             "properties": {
