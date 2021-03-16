@@ -12,7 +12,7 @@ import (
 type resourceApi struct{}
 
 var (
-	Resource = &relationApi{}
+	Resource = &resourceApi{}
 )
 
 // @summary 新建资源信息

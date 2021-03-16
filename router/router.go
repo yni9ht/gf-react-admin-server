@@ -39,4 +39,10 @@ func init() {
 		group.Middleware(middleware.JwtAuth)
 		group.PUT("/relation", v1.Relation.SaveRelation)
 	})
+
+	// 资源服务
+	s.Group(RouteGroupPrefix, func(group *ghttp.RouterGroup) {
+		group.Middleware(middleware.JwtAuth)
+		group.POST("/resource", v1.Resource.CreateResource)
+	})
 }
