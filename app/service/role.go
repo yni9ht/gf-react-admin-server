@@ -71,19 +71,19 @@ func (r *roleService) EditRole(req *model.EditRoleReq) error {
 
 // RolePageList 获取角色分页列表
 func (r *roleService) RolePageList(req *model.RoleQueryReq) (interface{}, error) {
-	pageNum, pageSize := req.PageNum, req.PageSize
+	pageNo, pageSize := req.PageNo, req.PageSize
 	total, err := dao.Role.Count()
 	if err != nil {
 		return nil, err
 	}
 	roles := make([]model.RolePageListRes, 0)
-	err = dao.Role.Page(pageNum, pageSize).Structs(&roles)
+	err = dao.Role.Page(pageNo, pageSize).Structs(&roles)
 	if err != nil {
 		return nil, err
 	}
 
 	return &common.PageResult{
-		PageNum:  pageNum,
+		PageNo:   pageNo,
 		PageSize: pageSize,
 		Total:    total,
 		Records:  roles,
