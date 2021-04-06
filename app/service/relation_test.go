@@ -1,7 +1,7 @@
 package service
 
 import (
-	"gf-vue3-admin-server/app/model"
+	"gf-react-admin-server/app/model"
 	"github.com/gogf/gf/test/gtest"
 	"testing"
 )

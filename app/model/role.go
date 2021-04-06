@@ -5,8 +5,8 @@
 package model
 
 import (
-	"gf-vue3-admin-server/app/model/internal"
-	"gf-vue3-admin-server/library/common"
+	"gf-react-admin-server/app/model/internal"
+	"gf-react-admin-server/library/common"
 	"github.com/gogf/gf/os/gtime"
 )
 

@@ -1,9 +1,9 @@
 package service
 
 import (
-	"gf-vue3-admin-server/app/dao"
-	"gf-vue3-admin-server/app/model"
-	"gf-vue3-admin-server/library/common"
+	"gf-react-admin-server/app/dao"
+	"gf-react-admin-server/app/model"
+	"gf-react-admin-server/library/common"
 	"github.com/gogf/gf/util/gvalid"
 )
 

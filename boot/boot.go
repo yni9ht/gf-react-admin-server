@@ -1,7 +1,7 @@
 package boot
 
 import (
-	_ "gf-vue3-admin-server/packed"
+	_ "gf-react-admin-server/packed"
 	"github.com/gogf/gf/frame/g"
 	"github.com/gogf/swagger"
 )

@@ -5,7 +5,7 @@
 package dao
 
 import (
-	"gf-vue3-admin-server/app/dao/internal"
+	"gf-react-admin-server/app/dao/internal"
 )
 
 // userDao is the manager for logic model data accessing

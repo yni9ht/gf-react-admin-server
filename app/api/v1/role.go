@@ -1,9 +1,9 @@
 package v1
 
 import (
-	"gf-vue3-admin-server/app/model"
-	"gf-vue3-admin-server/app/service"
-	"gf-vue3-admin-server/library/response"
+	"gf-react-admin-server/app/model"
+	"gf-react-admin-server/app/service"
+	"gf-react-admin-server/library/response"
 	"github.com/gogf/gf/errors/gerror"
 	"github.com/gogf/gf/net/ghttp"
 	"github.com/gogf/gf/util/gconv"

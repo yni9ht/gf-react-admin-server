@@ -1,9 +1,9 @@
 package v1
 
 import (
-	"gf-vue3-admin-server/app/model"
-	"gf-vue3-admin-server/app/service"
-	"gf-vue3-admin-server/library/response"
+	"gf-react-admin-server/app/model"
+	"gf-react-admin-server/app/service"
+	"gf-react-admin-server/library/response"
 	"github.com/gogf/gf/errors/gerror"
 	"github.com/gogf/gf/net/ghttp"
 	"github.com/gogf/gf/util/gvalid"
@@ -55,4 +55,16 @@ func (r *resourceApi) EditResource(req *ghttp.Request) {
 		response.FailCodeAndMsgExit(req, gerror.Code(err), err.Error())
 	}
 	response.SuccessMsgExit(req, "编辑成功")
+}
+
+// @summary 获取资源树形结构
+// @tags 资源管理
+// @produce json
+// @router /v1/resource/tree [GET]
+func (r *resourceApi) GetResourceTree(req *ghttp.Request) {
+	trees, err := service.Resource.GetResourceTree()
+	if err != nil {
+		response.FailMsgExit(req, err.Error())
+	}
+	response.SuccessData(req, trees)
 }

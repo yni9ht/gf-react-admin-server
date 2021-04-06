@@ -27,6 +27,26 @@
             }
         },
         "/v1/resource": {
+            "put": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "资源管理"
+                ],
+                "summary": "编辑资源信息",
+                "parameters": [
+                    {
+                        "description": "编辑资源参数",
+                        "name": "entity",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.EditResourceReq"
+                        }
+                    }
+                ]
+            },
             "post": {
                 "produces": [
                     "application/json"
@@ -46,6 +66,17 @@
                         }
                     }
                 ]
+            }
+        },
+        "/v1/resource/tree": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "资源管理"
+                ],
+                "summary": "获取资源树形结构"
             }
         },
         "/v1/role": {
@@ -208,6 +239,47 @@
                 }
             }
         },
+        "model.EditResourceReq": {
+            "type": "object",
+            "properties": {
+                "alias": {
+                    "description": "资源别称",
+                    "type": "string"
+                },
+                "enable": {
+                    "description": "0:不显示，1显示",
+                    "type": "boolean"
+                },
+                "icon": {
+                    "description": "资源图标",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "主键id",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "资源名称",
+                    "type": "string"
+                },
+                "parentId": {
+                    "description": "父资源id",
+                    "type": "integer"
+                },
+                "sn": {
+                    "description": "排序",
+                    "type": "integer"
+                },
+                "type": {
+                    "description": "资源类型：menu-菜单；button-按钮；link-链接",
+                    "type": "string"
+                },
+                "url": {
+                    "description": "资源路径",
+                    "type": "string"
+                }
+            }
+        },
         "model.EditRoleReq": {
             "type": "object",
             "properties": {
@@ -232,7 +304,7 @@
         "model.RoleQueryReq": {
             "type": "object",
             "properties": {
-                "pageNum": {
+                "pageNo": {
                     "description": "分页页数",
                     "type": "integer"
                 },

@@ -5,7 +5,7 @@
 package model
 
 import (
-	"gf-vue3-admin-server/app/model/internal"
+	"gf-react-admin-server/app/model/internal"
 )
 
 // User is the golang structure for table admin_user.

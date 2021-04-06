@@ -1,10 +1,10 @@
 package service
 
 import (
-	"gf-vue3-admin-server/app/dao"
-	"gf-vue3-admin-server/app/model"
-	"gf-vue3-admin-server/library/common"
-	"gf-vue3-admin-server/library/response"
+	"gf-react-admin-server/app/dao"
+	"gf-react-admin-server/app/model"
+	"gf-react-admin-server/library/common"
+	"gf-react-admin-server/library/response"
 	"github.com/gogf/gf/errors/gerror"
 	"github.com/gogf/gf/util/gconv"
 )
@@ -65,4 +65,16 @@ func (r *resourceService) EditResource(req *model.EditResourceReq) error {
 		return err
 	}
 	return nil
+}
+
+// GetResourceTree 获取资源树形结构
+func (r *resourceService) GetResourceTree() (trees []common.TreeNode, err error) {
+	resources := new([]*model.Resource)
+	*resources, err = dao.Resource.Order("sn ASC").All()
+	if err != nil {
+		return nil, err
+	}
+
+	trees = common.GenerateTree(model.GetResourceSlice(*resources))
+	return
 }

@@ -1,9 +1,9 @@
 package middleware
 
 import (
-	"gf-vue3-admin-server/app/model"
-	"gf-vue3-admin-server/app/service"
-	"gf-vue3-admin-server/library/response"
+	"gf-react-admin-server/app/model"
+	"gf-react-admin-server/app/service"
+	"gf-react-admin-server/library/response"
 	"github.com/gogf/gcache-adapter/adapter"
 	jwt "github.com/gogf/gf-jwt"
 	"github.com/gogf/gf/frame/g"

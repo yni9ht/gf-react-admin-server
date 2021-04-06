@@ -12,7 +12,7 @@ import (
 	"github.com/gogf/gf/frame/gmvc"
 	"time"
 
-	"gf-vue3-admin-server/app/model"
+	"gf-react-admin-server/app/model"
 )
 
 // ResourceDao is the manager for logic model data accessing

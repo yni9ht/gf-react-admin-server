@@ -5,8 +5,8 @@
 package dao
 
 import (
-	"gf-vue3-admin-server/app/dao/internal"
-	"gf-vue3-admin-server/app/model"
+	"gf-react-admin-server/app/dao/internal"
+	"gf-react-admin-server/app/model"
 )
 
 // roleDao is the manager for logic model data accessing

@@ -1,4 +1,4 @@
-module gf-vue3-admin-server
+module gf-react-admin-server
 
 require (
 	github.com/bwmarrin/snowflake v0.3.0

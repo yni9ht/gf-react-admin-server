@@ -2,12 +2,12 @@
 [server]
 	Address     = ":8199"
 	ServerRoot  = "public"
-	ServerAgent = "gf-vue3-admin-server"
-	LogPath     = "./log/gf-vue3-admin-server/server"
+	ServerAgent = "gf-react-admin-server"
+	LogPath     = "./log/gf-react-admin-server/server"
 
 # Logger.
 [logger]
-    Path        = "./log/gf-vue3-admin-server/log"
+    Path        = "./log/gf-react-admin-server/log"
     Level       = "all"
     Stdout      = true
 
@@ -19,7 +19,7 @@
         debug = true
     # Database logger.
     [database.logger]
-        Path   = "./log/gf-vue3-admin-server/sql"
+        Path   = "./log/gf-react-admin-server/sql"
         Level  = "all"
         Stdout = true
 
@@ -32,8 +32,8 @@
 [jwt]
     ExpireTime = 60
     RefreshTime = 480
-    SignKey = "gf-vue3-admin-server"
-    Realm = "gf-vue3-admin-server zone"
+    SignKey = "gf-react-admin-server"
+    Realm = "gf-react-admin-server zone"
     IdentityKey = "JWT_USER_ID"
 #    TokenLookup = "header: Authorization, query: token, cookie: jwt"
     TokenLookup = "header: Authorization"

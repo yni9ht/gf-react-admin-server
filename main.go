@@ -1,8 +1,8 @@
 package main
 
 import (
-	_ "gf-vue3-admin-server/boot"
-	_ "gf-vue3-admin-server/router"
+	_ "gf-react-admin-server/boot"
+	_ "gf-react-admin-server/router"
 
 	"github.com/gogf/gf/frame/g"
 )

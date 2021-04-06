@@ -7,7 +7,7 @@ LABEL maintainer="john@goframe.org"
 ###############################################################################
 
 # 设置固定的项目路径
-ENV WORKDIR /var/www/gf-vue3-admin-server
+ENV WORKDIR /var/www/gf-react-admin-server
 
 # 添加应用可执行文件，并设置执行权限
 ADD ./bin/linux_amd64/main   $WORKDIR/main

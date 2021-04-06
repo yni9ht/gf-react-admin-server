@@ -1,8 +1,8 @@
 package service
 
 import (
-	"gf-vue3-admin-server/app/dao"
-	"gf-vue3-admin-server/app/model"
+	"gf-react-admin-server/app/dao"
+	"gf-react-admin-server/app/model"
 )
 
 type userService struct {

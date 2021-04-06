@@ -1,8 +1,8 @@
 package router
 
 import (
-	v1 "gf-vue3-admin-server/app/api/v1"
-	"gf-vue3-admin-server/app/middleware"
+	v1 "gf-react-admin-server/app/api/v1"
+	"gf-react-admin-server/app/middleware"
 	"github.com/gogf/gf/frame/g"
 	"github.com/gogf/gf/net/ghttp"
 )
@@ -45,5 +45,6 @@ func init() {
 		group.Middleware(middleware.JwtAuth)
 		group.POST("/resource", v1.Resource.CreateResource)
 		group.PUT("/resource", v1.Resource.EditResource)
+		group.GET("/resource/tree", v1.Resource.GetResourceTree)
 	})
 }

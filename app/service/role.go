@@ -1,10 +1,10 @@
 package service
 
 import (
-	"gf-vue3-admin-server/app/dao"
-	"gf-vue3-admin-server/app/model"
-	"gf-vue3-admin-server/library/common"
-	"gf-vue3-admin-server/library/response"
+	"gf-react-admin-server/app/dao"
+	"gf-react-admin-server/app/model"
+	"gf-react-admin-server/library/common"
+	"gf-react-admin-server/library/response"
 	"github.com/gogf/gf/errors/gerror"
 	"github.com/gogf/gf/util/gconv"
 )
