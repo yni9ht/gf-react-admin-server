@@ -62,6 +62,9 @@ func recursiveTree(node *TreeNode, childs []ITreeNode) {
 				Data:          v.GetData(),
 			}
 
+			// 递归寻找子节点
+			recursiveTree(childTreeNode, childs)
+
 			node.Children = append(node.Children, *childTreeNode)
 		}
 	}

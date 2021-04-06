@@ -49,6 +49,10 @@ func TestCreateRelation(t *testing.T) {
 			{Id: 21, Name: "子节点1", ParentId: 2},
 			{Id: 11, Name: "子节点2", ParentId: 1},
 			{Id: 31, Name: "子节点3", ParentId: 3},
+			{Id: 211, Name: "子节点4", ParentId: 21},
+			{Id: 111, Name: "子节点5", ParentId: 11},
+			{Id: 311, Name: "子节点6", ParentId: 31},
+			{Id: 1111, Name: "子节点7", ParentId: 111},
 		}
 		tree := GenerateTree(getData(datas))
 		by, _ := json.Marshal(tree)
