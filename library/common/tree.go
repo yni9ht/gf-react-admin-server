@@ -20,6 +20,7 @@ type TreeNode struct {
 
 // GenerateTree 生成树形结构
 func GenerateTree(nodes []ITreeNode) (trees []TreeNode) {
+	trees = make([]TreeNode, 0)
 	if len(nodes) <= 0 {
 		return
 	}

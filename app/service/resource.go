@@ -69,12 +69,12 @@ func (r *resourceService) EditResource(req *model.EditResourceReq) error {
 
 // GetResourceTree 获取资源树形结构
 func (r *resourceService) GetResourceTree() (trees []common.TreeNode, err error) {
-	resources := new([]*model.Resource)
-	*resources, err = dao.Resource.Order("sn ASC").All()
+	resources := make([]*model.Resource, 0)
+	err = dao.Resource.Order("sn ASC").Structs(&resources)
 	if err != nil {
 		return nil, err
 	}
 
-	trees = common.GenerateTree(model.GetResourceSlice(*resources))
+	trees = common.GenerateTree(model.GetResourceSlice(resources))
 	return
 }
