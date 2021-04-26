@@ -47,4 +47,10 @@ func init() {
 		group.PUT("/resource", v1.Resource.EditResource)
 		group.GET("/resource/tree", v1.Resource.GetResourceTree)
 	})
+
+	// 用户服务
+	s.Group(RouteGroupPrefix, func(group *ghttp.RouterGroup) {
+		group.Middleware(middleware.JwtAuth)
+		group.GET("/user/{id}", v1.User.GetUserInfos)
+	})
 }

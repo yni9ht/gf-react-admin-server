@@ -21,12 +21,29 @@ type UserLoginReq struct {
 
 // UserLoginRes is login response param
 type UserLoginRes struct {
-	JWT_USER_ID int    `orm:"id,primary" json:"JWT_USER_ID"` //
-	FullName    string `json:"fullName"`                     // 姓名
-	Account     string `json:"account"`                      // 账号
-	Email       string `json:"email"`                        // 邮箱
-	Mobile      string `json:"mobile"`                       // 手机号码
-	Wechat      string `json:"wechat"`                       // 微信号
-	Avatar      string `json:"avatar"`                       // 头像
-	Sex         int    `json:"sex"`                          // 性别：0:未知，1:男，2:女
+	JWT_USER_ID int    `json:"JWT_USER_ID"` //
+	FullName    string `json:"fullName"`    // 姓名
+	Account     string `json:"account"`     // 账号
+	Email       string `json:"email"`       // 邮箱
+	Mobile      string `json:"mobile"`      // 手机号码
+	Wechat      string `json:"wechat"`      // 微信号
+	Avatar      string `json:"avatar"`      // 头像
+	Sex         int    `json:"sex"`         // 性别：0:未知，1:男，2:女
+}
+
+// UserInfo 用户信息
+type UserInfo struct {
+	FullName string `json:"fullName"` // 姓名
+	Account  string `json:"account"`  // 账号
+	Email    string `json:"email"`    // 邮箱
+	Mobile   string `json:"mobile"`   // 手机号码
+	Wechat   string `json:"wechat"`   // 微信号
+	Avatar   string `json:"avatar"`   // 头像
+	Sex      int    `json:"sex"`      // 性别：0:未知，1:男，2:女
+}
+
+// UserInfos 用户的全部信息
+type UserInfos struct {
+	User  UserInfo       `json:"user"`
+	Menus []ResourceInfo `json:"menus"`
 }
