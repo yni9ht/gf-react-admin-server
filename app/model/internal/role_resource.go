@@ -11,8 +11,8 @@ import (
 // RoleResource is the golang structure for table admin_role_resource.
 type RoleResource struct {
 	Id         int64       `orm:"id,primary"  json:"id"`         //
-	RoleId     string      `orm:"role_id"     json:"roleId"`     // 角色id
-	ResourceId string      `orm:"resource_id" json:"resourceId"` // 资源id
+	RoleId     int64       `orm:"role_id"     json:"roleId"`     // 角色id
+	ResourceId int64       `orm:"resource_id" json:"resourceId"` // 资源id
 	CreateBy   int64       `orm:"create_by"   json:"createBy"`   // 创建人
 	CreatedAt  *gtime.Time `orm:"created_at"  json:"createdAt"`  // 创建时间
 	UpdatedBy  int64       `orm:"updated_by"  json:"updatedBy"`  // 更新人

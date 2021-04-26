@@ -78,3 +78,52 @@ func (r *resourceService) GetResourceTree() (trees []common.TreeNode, err error)
 	trees = common.GenerateTree(model.GetResourceSlice(resources))
 	return
 }
+
+// GetMenuByUserId 获取用户具有的资源列表
+func (r *resourceService) GetMenuByUserId(userId int) ([]*model.Resource, error) {
+	if userId <= 0 {
+		err := gerror.New("userId不能为空")
+		return nil, err
+	}
+
+	userRelations := ([]model.Relation)(nil)
+	err := dao.Relation.Where(dao.Relation.Columns.UserId, userId).Structs(&userRelations)
+	if len(userRelations) <= 0 {
+		return nil, err
+	}
+
+	roleIds := make([]int64, 0, len(userRelations))
+	for _, v := range userRelations {
+		roleIds = append(roleIds, v.RoleId)
+	}
+
+	roleResources := ([]model.RoleResource)(nil)
+	err = dao.RoleResource.Where(dao.RoleResource.Columns.RoleId+" IN (?)", roleIds).Structs(&roleResources)
+	if len(roleResources) <= 0 {
+		return nil, err
+	}
+
+	resourceIds := make([]int64, 0, len(roleResources))
+	for _, v := range roleResources {
+		resourceIds = append(resourceIds, v.ResourceId)
+	}
+
+	resources := make([]*model.Resource, 0)
+	err = dao.Resource.Where("type = ?", "menu").WherePri(resourceIds).Order("sn ASC").Structs(&resources)
+	if err != nil {
+		return nil, err
+	}
+
+	return resources, nil
+}
+
+// GetMenuTreeByUserId 根据用户id获取改用户拥有的菜单资源
+func (r *resourceService) GetMenuTreeByUserId(userId int) (trees []common.TreeNode, err error) {
+	resources, err := r.GetMenuByUserId(userId)
+	if err != nil {
+		return nil, err
+	}
+
+	trees = common.GenerateTree(model.GetResourceSlice(resources))
+	return
+}
