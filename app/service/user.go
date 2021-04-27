@@ -3,6 +3,9 @@ package service
 import (
 	"gf-react-admin-server/app/dao"
 	"gf-react-admin-server/app/model"
+	"gf-react-admin-server/library/response"
+	"github.com/gogf/gf/errors/gerror"
+	"golang.org/x/crypto/bcrypt"
 )
 
 type userService struct {
@@ -14,12 +17,19 @@ var (
 
 func (u *userService) Login(loginReq *model.UserLoginReq) (user *model.UserLoginRes, err error) {
 	var queryParam = map[string]string{
-		"account":  loginReq.Account,
-		"password": loginReq.Password,
+		"account": loginReq.Account,
 	}
 	err = dao.User.Where(queryParam).Scan(&user)
 	if err != nil {
 		return nil, err
+	}
+	if user == nil {
+		return nil, gerror.NewCode(response.AccountExist, "账户不存在")
+	}
+
+	err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(loginReq.Password))
+	if err != nil {
+		return nil, gerror.NewCode(response.AccountValidErr, "账户或密码错误")
 	}
 	return user, nil
 }

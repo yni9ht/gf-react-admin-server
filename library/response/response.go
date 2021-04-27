@@ -7,12 +7,14 @@ import (
 )
 
 var (
-	OK            = http.StatusOK
-	OkMessage     = "正常"
-	ERROR         = http.StatusInternalServerError
-	ErrorMessage  = "服务器发生了一些错误"
-	DataExist     = 1001 // 数据已存在
-	ParamValidErr = 1002 // 参数校验失败
+	OK              = http.StatusOK
+	OkMessage       = "正常"
+	ERROR           = http.StatusInternalServerError
+	ErrorMessage    = "服务器发生了一些错误"
+	DataExist       = 1001 // 数据已存在
+	ParamValidErr   = 1002 // 参数校验失败
+	AccountExist    = 1003 // 帐号不存在
+	AccountValidErr = 1004 // 帐号或密码错误
 )
 
 type ResultRes struct {

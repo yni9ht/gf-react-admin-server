@@ -29,6 +29,7 @@ type UserLoginRes struct {
 	Wechat      string `json:"wechat"`      // 微信号
 	Avatar      string `json:"avatar"`      // 头像
 	Sex         int    `json:"sex"`         // 性别：0:未知，1:男，2:女
+	Password    string `json:"-"`
 }
 
 // UserInfo 用户信息

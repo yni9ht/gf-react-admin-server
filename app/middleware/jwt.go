@@ -104,7 +104,10 @@ func Unauthorized(r *ghttp.Request, code int, message string) {
 	g.Log().Warningf("访问失败，错误码：[%v], 错误信息:[%v], 请求路径：[%v],请求方法：[%v], router-method:[%v], router-uri:[%v], router-regNames [%v], router-regRule:[%v]",
 		code, message,
 		r.RequestURI, r.Method, r.Router.Method, r.Router.Uri, r.Router.RegNames, r.Router.RegRule)
-	response.FailCodeAndMsgExit(r, code, errorMsg)
+	if message == "" {
+		message = errorMsg
+	}
+	response.FailCodeAndMsgExit(r, code, message)
 }
 
 // LoginResponse custom callback login response. 自定义登录返回方法
