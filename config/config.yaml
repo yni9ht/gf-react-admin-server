@@ -1,0 +1,35 @@
+server:
+  Address: ':8199'
+  ServerRoot: public
+  ServerAgent: gf-react-admin-server
+  LogPath: ./log/gf-react-admin-server/server
+logger:
+  Path: ./log/gf-react-admin-server/log
+  Level: all
+  Stdout: true
+database:
+  default:
+    - type: mysql
+      link: 'root:123456@tcp(127.0.0.1:3306)/go_test'
+      debug: true
+  logger:
+    Path: ./log/gf-react-admin-server/sql
+    Level: all
+    Stdout: true
+redis:
+  default: '127.0.0.1:6379,0'
+  cache: '127.0.0.1:6379,1'
+jwt:
+  ExpireTime: 60
+  RefreshTime: 480
+  SignKey: gf-react-admin-server
+  Realm: gf-react-admin-server zone
+  IdentityKey: JWT_USER_ID
+  TokenLookup: 'header: Authorization'
+  TokenHeadName: Bearer
+gfcli:
+  gen:
+    dao:
+      - link: 'mysql:root:123456@tcp(127.0.0.1:3306)/go_test'
+        tables: admin_role_resource
+        removePrefix: admin_
